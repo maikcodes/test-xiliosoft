@@ -1,4 +1,4 @@
-const getAllEmployees = async (companyName = "", bs = "", results = 5) => {
+const getAllEmployees = async (companyName = "", bs = "Technology", results = 5) => {
   try {
     const response = await fetch("https://jsonplaceholder.org/users");
 
@@ -9,7 +9,10 @@ const getAllEmployees = async (companyName = "", bs = "", results = 5) => {
     const data = await response.json();
 
     if (companyName === "") {
-      const result = data.slice(0, results);
+      const filteredEmployees = data.filter((employee) => {
+        return employee.company.bs === bs;
+      });
+      const result = filteredEmployees.slice(0, results);
       return result;
     }
 
