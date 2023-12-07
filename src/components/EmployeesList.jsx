@@ -24,7 +24,7 @@ function EmployeesList() {
         };
 
         fetchData();
-    }, [companyName, bs, results]);
+    }, []);
 
     const filterEmployees = async () => {
         try {
@@ -86,9 +86,7 @@ function EmployeesList() {
                     />
                 )}
                 renderItem={({ item: employee }) => (
-                    <View>
-                        <EmployeeItem employee={employee} />
-                    </View>
+                    <EmployeeItem employee={employee} />
                 )}
             />
         </View>
@@ -98,8 +96,8 @@ function EmployeesList() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
-        backgroundColor: '#f5f5fd',
+        padding: 10,
+        backgroundColor: '#ededed',
     },
     input: {
         height: 40,

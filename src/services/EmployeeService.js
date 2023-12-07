@@ -1,4 +1,8 @@
-const getAllEmployees = async (companyName = "", bs = "Technology", results = 5) => {
+const getAllEmployees = async (
+  companyName = "",
+  bs = "Technology",
+  results = 5
+) => {
   try {
     const response = await fetch("https://jsonplaceholder.org/users");
 
@@ -8,22 +12,25 @@ const getAllEmployees = async (companyName = "", bs = "Technology", results = 5)
 
     const data = await response.json();
 
-    if (companyName === "") {
-      const filteredEmployees = data.filter((employee) => {
-        return employee.company.bs === bs;
-      });
-      const result = filteredEmployees.slice(0, results);
-      return result;
+    if (companyName !== "" && bs === "") {
+      const filteredResults = data.filter(
+        (employee) => employee.company.name === companyName
+      );
+      return filteredResults.slice(0, results);
     }
 
-    const filteredEmployees = data.filter((employee) => {
-      return (
-        (employee.company.name = companyName) && employee.company.bs === bs
+    if (companyName === "" && bs !== "") {
+      const filteredResults = data.filter(
+        (employee) => employee.company.bs === bs
       );
-    });
+      return filteredResults.slice(0, results);
+    }
 
-    const result = filteredEmployees.slice(0, results);
-    return result;
+    if (companyName === "" && bs === "") {
+      return data.slice(0, results);
+    }
+
+    return data.slice(0, results);
   } catch (error) {
     throw new Error("Cannot get the data");
   }

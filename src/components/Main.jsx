@@ -1,46 +1,28 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { View, Image, StyleSheet } from 'react-native';
 
-import EmployeesList from './EmployeesList';
-import TodoList from './TodoList';
+import TaskForm from '../screens/TaskForm.jsx';
+import Tabs from './Tabs.jsx';
 
-const Tab = createBottomTabNavigator();
+
+const Stack = createStackNavigator();
+
 
 const Main = () => {
     return (
-        <View style={{ flexGrow: 1 }}>
-            <NavigationContainer>
-                <Tab.Navigator>
-                    <Tab.Screen
-                        name="Employees List"
-                        component={EmployeesList}
-                        options={{
-                            tabBarIcon: () => (
-                                <Image source={require('../../assets/employee.png')} style={styles.icon} ></Image>
-                            ),
-                        }}
-                    />
-                    <Tab.Screen
-                        name="Todo List"
-                        component={TodoList}
-                        options={{
-                            tabBarIcon: () => (
-                                <Image source={require('../../assets/task.png')} style={styles.icon} ></Image>
-                            ),
-                        }}
-                    />
-                </Tab.Navigator>
-            </NavigationContainer>
-        </View >
+        <NavigationContainer>
+            <Stack.Navigator screenOptions={{
+                headerStyle: {
+                    backgroundColor: "#886fe3",
+                },
+                headerTintColor: 'white',
+                headerBackTitle: 'Back',
+            }}>
+                <Stack.Screen name='App' component={Tabs} />
+                <Stack.Screen name='TaskForm' component={TaskForm} options={{ title: 'Task' }} />
+            </Stack.Navigator>
+        </NavigationContainer>
     )
 }
-
-const styles = StyleSheet.create({
-    icon: {
-        width: 30,
-        height: 30,
-    },
-});
 
 export default Main

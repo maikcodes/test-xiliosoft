@@ -1,33 +1,51 @@
 # Test XilioSoft
 
-Hola esta este es mi solución para el test propuesto por XilioSoft
+Hi this is my own solution to XilioSoft test. See it here [test](doc/test.pdf)
 
-## Instalación
+## Install
 
-1. Clona el repositorio.
+### Clone this repository
 
 ``` bash
-https://github.com/maikcodes/test-xiliosoft.git
+git clone https://github.com/maikcodes/test-xiliosoft.git
 ```
 
-2. Accede al proyecto.
+### Install dependencies
+
+Access to the project:
 
 ``` bash
 cd test-xiliosoft
 ```
 
-3. Instala las dependencias.
+After cloning the repository, navigate to the project directory and install the required dependencies using the following command:
 
 ``` bash
 npm install
 ```
 
-4. Ejecuta el proyecto.
+### Configure fake api
+
+Create a fake api using [json server](https://www.npmjs.com/package/json-server) and use this template to mock the data [db.json](doc/db.json).
+
+### ⚠️ Important
+
+Use a wifi connection and then publish your fake api using the next command:
+
+``` bash
+npx json-server --no-cors --host 0.0.0.0 --port 3001 --watch db.json
+```
+
+Go to [TaskServices.js](src/services/TaskServices.js) file and change baseUrl with your local ipv4 address (only change the ip). __Remember this is a demo only, if you are developing an app remember always use environment variables and other practices to keep sensitive info safe__
+
+### Run the app
 
 ``` bash
 npx expo start
 ```
 
-5. Escanea el código QR que se muestra en la consola o intenta con este.
+The above command execute this app with Expo, this cerates a QR code to scan with the Expo app. Scan it! and there you have it.
 
-![Alt text](assets/qr.png)
+### Give me a star
+
+If you find this demo project helpful or interesting, consider leaving a star to show your support!
